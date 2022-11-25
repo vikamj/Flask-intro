@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routes</title>
+</head>
+<body>
+    <h2>{{ category.upper() }}</h2>
+    <a href="/products/{{category}}/{{id}}">Products {% if category %} >> {{ category }} {% endif %} >> {{ id }}</a>
+    <hr>
+    <a href="/products">Productos</a> >>
+    {% if category %}
+    <a href="/products/{{category}}">{{category.capitalize()}}</a> >>
+    {% endif %}
+    <a href="/products/{{category}}/{{id}}">{{ id }}</a>
+    <hr>
+    <h3>Producto - {{ id }}</h3>
+    <hr>
+    {% if category == "" %}
+    <table border="1">
+        <thead>
+            <th>Dato</th>
+        </thead>
+        <tbody>
+            {% for i in range(10) %}
+            <tr>
+                <td>
+                    <a href="#"><h4>Categorías - {{ i }}</h4></a> 
+                    <p><strong>Descripción</strong></p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, sed?</p>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</body>
+</html>
