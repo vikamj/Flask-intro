@@ -1,26 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- cargar CSS y Bootstrap -->
-    <title>Routes</title>
-</head>
-<body>
-    <h2>{{ category.upper() }}</h2>
-    <a href="/products/{{category}}/{{id}}">Products {% if category %} >> {{ category }} {% endif %} >> {{ id }}</a>
-    <hr>
-    <a href="/products">Productos</a> >>
-    {% if category %}
-    <a href="/products/{{category}}">{{category.capitalize()}}</a> >>
-    {% endif %}
-    <a href="/products/{{category}}/{{id}}">{{ id }}</a>
-    <hr>
-    <h3>Producto - {{ id }}</h3>
-    <hr>
-    {% if category == "" %}
-    <table border="1">
+{% extends "_layout.html" %}
+{% block body %}
+<!-- routes.html -> Productos >> Categorias >> Id -->
+    <header class="header">
+        <a href="/products">Productos</a> 
+        {% if category %}
+        >>
+        <a href="/products/{{category}}">{{category.capitalize()}}</a> 
+        {% endif %}
+        {% if id > 0 %}
+        >>
+        <a href="/products/{{category}}/{{id}}"> {{ id }}</a>
+        {% endif %}
+        <hr>
+        <h3>Productos {% if id > 0 %}- {{ id }}{% endif %}</h3>
+    </header>
+
+    <div class="container-fluid">
+    {% if true %}
+    <table border="1" class="mx-auto">
         <thead>
             <th>Dato</th>
         </thead>
@@ -28,15 +25,19 @@
             {% for i in range(1, 11) %}
             <tr>
                 <td>
-                    <a href="#"><h4>Categorías - {{ i }}</h4></a> 
-                    <p><strong>Descripción</strong></p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, sed?</p>
-                    <img src="./static/images/{{ i }}.png" width="100" alt="pic">
+                    <a href="#"><h4>Productos - {{ i }}</h4></a> 
+                    <h5><strong>Descripción</strong></h5>
+                    <div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, sed?</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, sed?</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, sed?</p>
+                    </div>
+                    <img class="img" src="/static/images/{{ i }}.png" alt="imagen-{{ i }}">
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
     {% endif %}
-</body>
-</html>
+    </div>
+{% endblock %}
